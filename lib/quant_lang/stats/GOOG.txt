@@ -1,0 +1,71 @@
+Valuation Measures
+Market Cap (intraday) 5	731.17B
+Enterprise Value 3	652.22B
+Trailing P/E	34.97
+Forward P/E 1	25.21
+PEG Ratio (5 yr expected) 1	1.57
+Price/Sales (ttm)	6.99
+Price/Book (mrq)	4.63
+Enterprise Value/Revenue 3	6.24
+Enterprise Value/EBITDA 6	18.94
+Financial Highlights
+Fiscal Year
+Fiscal Year Ends	Dec 31, 2016
+Most Recent Quarter (mrq)	Sep 30, 2017
+Profitability
+Profit Margin	20.09%
+Operating Margin (ttm)	26.63%
+Management Effectiveness
+Return on Assets (ttm)	9.96%
+Return on Equity (ttm)	14.43%
+Income Statement
+Revenue (ttm)	104.6B
+Revenue Per Share (ttm)	151.21
+Quarterly Revenue Growth (yoy)	23.70%
+Gross Profit (ttm)	N/A
+EBITDA	34.44B
+Net Income Avi to Common (ttm)	21.01B
+Diluted EPS (ttm)	29.92
+Quarterly Earnings Growth (yoy)	33.00%
+Balance Sheet
+Total Cash (mrq)	100.14B
+Total Cash Per Share (mrq)	144.13
+Total Debt (mrq)	3.96B
+Total Debt/Equity (mrq)	2.52
+Current Ratio (mrq)	5.77
+Book Value Per Share (mrq)	226.11
+Cash Flow Statement
+Operating Cash Flow (ttm)	36.24B
+Levered Free Cash Flow (ttm)	22.6B
+Trading Information
+Stock Price History
+Beta	1.06
+52-Week Change 3	35.80%
+S&P500 52-Week Change 3	20.04%
+52 Week High 3	1,078.49
+52 Week Low 3	770.41
+50-Day Moving Average 3	1,037.78
+200-Day Moving Average 3	970.99
+Share Statistics
+Avg Vol (3 month) 3	1.35M
+Avg Vol (10 day) 3	1.03M
+Shares Outstanding 5	349.48M
+Float	602.69M
+% Held by Insiders 1	11.70%
+% Held by Institutions 1	70.80%
+Shares Short 3	3.65M
+Short Ratio 3	2.64
+Short % of Float 3	0.00%
+Shares Short (prior month) 3	3.6M
+Dividends & Splits
+Forward Annual Dividend Rate 4	N/A
+Forward Annual Dividend Yield 4	N/A
+Trailing Annual Dividend Rate 3	N/A
+Trailing Annual Dividend Yield 3	N/A
+5 Year Average Dividend Yield 4	N/A
+Payout Ratio 4	N/A
+Dividend Date 3	N/A
+Ex-Dividend Date 4	N/A
+Last Split Factor (new per old) 2	10000000/10000000
+Last Split Date 3	Apr 27, 2015
+
