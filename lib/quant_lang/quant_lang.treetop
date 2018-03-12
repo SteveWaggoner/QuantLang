@@ -1,0 +1,162 @@
+# This file contains the PEG grammar definition that
+# Treetop uses to generate our parser.
+# For more information check out the Treetop site:http://treetop.rubyforge.org/
+#
+# this grammar supports quantitative analyze.
+#
+
+grammar QuantLang
+
+  rule program
+        ( cmd / S )* <ProgramNode>
+  end
+
+  rule cmd
+        ( assignment / print )
+  end
+
+  rule filter
+        ( filter_attribute / filter_value )
+  end
+
+  rule filter_attribute
+        filter_sector1 '-' filter_sector2 <FilterAttributeNode>
+  end
+
+  rule filter_value
+        ( 'most' / 'best' / 'least' / 'top' / 'lowest' / 'greater-than' / 'less-than' / 'dump' ) ( '-' filter_amount )? '-' filter_variable ( '-' filter_timespan )?  <FilterValueNode>
+  end
+
+  rule filter_sector1
+        ( 'tech' / 'biotech' / [a-z]+ )
+  end
+
+  rule filter_sector2
+        ( 'stocks' / 'industry' / 'sector' )
+  end
+
+
+  rule filter_variable
+        ( 'market-cap' / 'growth' / 'pe-ratio' / 'risk' / 'price' / 'beta' / 'return' / 'eps' / 'shares' )
+  end
+
+  rule filter_amount
+        number
+  end
+
+  rule filter_timespan
+        timespan_type ( '-' timespan_length )? '-' timespan_units  <TimespanNode>
+  end
+
+  rule timespan_type
+        ( 'last' / 'current' )
+  end
+
+  rule timespan_length
+        ( text_number / integer )
+  end
+
+  rule timespan_units
+        ( 'year' / 'quarter' / 'month' / 'week' / 'day' / quarters / months ) ( 's' )?
+  end
+
+  rule quarters
+        'q' [1-4] <QuartersNode>
+  end
+
+  rule months
+        ( 'january' / 'february' / 'march' / 'april' / 'may' / 'june' / 'july' / 'august' / 'september' / 'october' / 'november' / 'december' )  <MonthsNode>
+  end
+
+  rule filter_pipe
+        '|>' s filter s <FilterPipeNode>
+  end
+
+
+  rule assignment
+        id s '=' s ( filter / object / id / array / number )  ( s filter_pipe )* <AssignmentNode>
+  end
+
+  rule print
+        'print' S ( filter / object / id / array / number ) ( s filter_pipe )* <PrintNode>
+  end
+
+  rule array
+        '[' s object_or_id s ( ',' s object_or_id s )* ']'  <ArrayNode>
+  end
+
+  rule object_or_id
+        ( filter_attribute / filter_value / object / id / number )
+  end
+
+  rule object
+        id '(' s params s ')' <ObjectNode> / id '()' <ObjectNode>
+  end
+
+  rule params
+        named_param_or_param ( s ',' s named_param_or_param )* <ParamsNode>
+  end
+
+  rule named_param_or_param
+        ( named_param / param )
+  end
+
+  rule named_param
+        id s ':' s param <NamedParamNode>
+  end
+
+  rule param
+        float / number / object / id / array
+  end
+
+  rule id
+       [A-Za-z] [A-Za-z0-9_\-]* <IdNode>
+  end
+
+  rule number
+        ( text_number / percent / integer )
+  end
+
+  rule percent
+        digits '%' <PercentNode>
+  end
+
+  rule float
+        sign? digits '.' digits+ <FloatNode>
+  end
+
+  rule integer
+        sign? digits <IntegerNode>
+  end
+
+  rule text_number
+       ( 'zero' / 'one' / 'two' / 'three' / 'four' / 'five' ) <TextNumberNode>
+  end
+
+  rule sign
+        ('+' / '-')
+  end
+
+  rule digits
+        [0-9]+
+  end
+
+  rule s      # Optional space
+        S?
+  end
+
+  rule S      # Mandatory space
+        (whitespace / comment_to_eol)+
+  end
+
+  rule whitespace
+        [ \t\n\r]+
+  end
+
+  rule comment_to_eol
+        '#' (!"\n" .)*
+  end
+
+end
+
+
