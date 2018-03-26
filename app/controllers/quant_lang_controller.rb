@@ -1,5 +1,5 @@
 
-require "./lib/quant_lang/quant_math"
+require "./lib/quant_lang/quant_lang"
 
 class QuantLangController < ApplicationController
 
@@ -12,7 +12,8 @@ class QuantLangController < ApplicationController
 
 
   def compile(code)
-	"[" + code + "] " + mean([2,4,1,5,8]).to_s
+      output = Parser.eval(code)
+      return output
   end
   helper_method :compile
 

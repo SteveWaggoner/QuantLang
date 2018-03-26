@@ -727,42 +727,60 @@ class ProgramNode < Treetop::Runtime::SyntaxNode
 
 end
 
+def with_captured_stdout
+    old_stdout = $stdout
+    $stdout = StringIO.new
+    yield
+    $stdout.string
+  ensure
+    $stdout = old_stdout
+end
+
+
+
+
 class Parser
 
   Treetop.load('quant_lang.treetop')
   @@parser = QuantLangParser.new
 
-  # Parse an input string and return a Ruby array like:
-  #   [:this, :is, [:a, :test]]
   def self.parse(data)
-
-#    puts "Let parse this vvvvv"
-#    puts data
 
     # Pass the data over to the parser instance
     tree = @@parser.parse(data)
 
 
-#    puts tree.inspect
-
     # If the AST is nil then there was an error during parsing
     # we need to report a simple error message to help the user
     if(tree.nil?)
-      raise Exception, "Parse error at offset: #{@@parser.index}" + @@parser.failure_reason
+      raise Exception, "Parse error at offset: #{@@parser.index}\n#{@@parser.failure_reason}"
     end
 
     return tree
   end
+
+  def self.eval(data)
+
+      str = with_captured_stdout { 
+    
+        tree = @@parser.parse(data)
+        if(tree.nil?)
+            puts "Parse error at offset: #{@@parser.index}\n#{@@parser.failure_reason}"
+        else
+            tree.eval
+        end
+    }
+    return str
+
+  end
+
+
 end
 
 if __FILE__ == $0
 
-        program = Parser.parse(ARGV[0])
-
-#       puts program.inspect
-        program.eval
-
-#puts "variables: #{program.variables}"
+        output = Parser.eval(ARGV[0])
+        puts output
 
 end
 
