@@ -48,3 +48,15 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Added at 2018-03-27 05:27:41 +0000 by ubuntu:
+gem "treetop", "~> 1.6"
+
+# Added at 2018-03-27 05:28:11 +0000 by ubuntu:
+gem "chronic", "~> 0.10.2"
+
+# Added at 2018-03-27 05:28:23 +0000 by ubuntu:
+gem "rbtree", "~> 0.4.2"
+
+# Added at 2018-03-30 06:49:12 +0000 by ubuntu:
+gem "passenger", "~> 5.2"

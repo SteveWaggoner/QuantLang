@@ -1,9 +1,9 @@
 #!ruby
 
-require "./quant_table"
-require "./quant_math"
-require "./quant_security"
-require "./quant_portfolio"
+require_relative "quant_table"
+require_relative "quant_math"
+require_relative "quant_security"
+require_relative "quant_portfolio"
 
 require "date"
 

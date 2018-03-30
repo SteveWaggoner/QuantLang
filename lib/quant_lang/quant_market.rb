@@ -1,8 +1,8 @@
 #!ruby
 
-require "./quant_table"
-require "./quant_math"
-require "./quant_security"
+require_relative "quant_table"
+require_relative "quant_math"
+require_relative "quant_security"
 
 require "date"
 require "csv"
@@ -229,11 +229,16 @@ class Market
         symbols.each {|s| add_stock(s, :STOCK_OR_MUTUAL, 10)}
     end
 
+
+    def full_path(rel_path)
+	File.expand_path(rel_path, File.dirname(__FILE__))
+    end
+
     def add_stock(symbol,type,commission)
         @stocks[symbol] = Stock.new(symbol,type,commission,self)
-        @stocks[symbol].read_prices("./prices/#{symbol}.csv")
-        @stocks[symbol].read_profile("./profiles/#{symbol}.txt")
-        @stocks[symbol].read_stats("./stats/#{symbol}.txt")
+        @stocks[symbol].read_prices(full_path("prices/#{symbol}.csv"))
+        @stocks[symbol].read_profile(full_path("profiles/#{symbol}.txt"))
+        @stocks[symbol].read_stats(full_path("stats/#{symbol}.txt"))
     end
 
 end

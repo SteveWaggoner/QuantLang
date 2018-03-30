@@ -4,8 +4,8 @@
 require 'treetop'
 require 'chronic'
 
-require './quant_strategy'
-require './quant_market'
+require_relative 'quant_strategy'
+require_relative 'quant_market'
 
 class ValueNode < Treetop::Runtime::SyntaxNode
 end
@@ -700,7 +700,7 @@ class ProgramNode < Treetop::Runtime::SyntaxNode
 #        @market.add_stock('PG',:STOCK,6.95)
         @market.add_stock('IBM',:STOCK,6.95)
 #        @market.add_stock('CELG',:STOCK,6.95)
-#        @market.add_stock('GOOG',:STOCK,0)
+        @market.add_stock('GOOG',:STOCK,0)
 #        @market.add_all
 
 
@@ -741,7 +741,7 @@ end
 
 class Parser
 
-  Treetop.load('quant_lang.treetop')
+  Treetop.load(File.expand_path('quant_lang.treetop', File.dirname(__FILE__)))
   @@parser = QuantLangParser.new
 
   def self.parse(data)

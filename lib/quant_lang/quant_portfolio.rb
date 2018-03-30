@@ -1,7 +1,7 @@
 #!ruby
 
-require "./quant_table"
-require "./quant_security"
+require_relative "quant_table"
+require_relative "quant_security"
 
 
 class Transaction < TableRow
