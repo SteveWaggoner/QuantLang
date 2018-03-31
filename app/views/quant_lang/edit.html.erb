@@ -4,7 +4,25 @@
 <form action="/QuantLang/edit" method="POST">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-  <textarea name="my_script" cols="80" rows="10"><%= params[:my_script] %></textarea>
+  <textarea name="my_script" cols="100" rows="15">
+      <% if params.key?(:my_script)  %>
+        <%= params[:my_script] %>
+      <% else %>
+mos = [ Momentum(10), Momentum(5) ]
+macds = [ MACD(12,26,9), MACD(12,26,8) ]
+
+tech-stocks = [ GOOG, IBM ]
+
+print tech-stocks
+
+my_strat = tech-stocks
+   |> best-return-last-3-quarters
+
+print my_strat
+
+
+      <% end %>
+  </textarea>
 
   <input type=submit>
 </form>
@@ -12,7 +30,11 @@
 
 <% if request.post?  %>
 
-<p><%= compile(params[:my_script]) %></p>
+    <p>
+    <pre>
+<%= compile(params[:my_script]) %>
+    </pre>
+    </p>
 
 
 <% end %>
