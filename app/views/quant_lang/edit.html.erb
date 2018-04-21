@@ -16,10 +16,10 @@ tech-stocks = [ GOOG, IBM ]
 print tech-stocks
 
 my_strat = tech-stocks
-   |> best-return-last-3-quarters
+   |> best-return-last-year
 
+print macds
 print my_strat
-
 
       <% end %>
   </textarea>
@@ -31,9 +31,7 @@ print my_strat
 <% if request.post?  %>
 
     <p>
-    <pre>
 <%= compile(params[:my_script]) %>
-    </pre>
     </p>
 
 
