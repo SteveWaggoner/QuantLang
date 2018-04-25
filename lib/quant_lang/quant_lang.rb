@@ -406,6 +406,113 @@ class PrintNode < CommandNode
 
         if val.kind_of? Array and val.size>0 and val[0].kind_of? Security
             print_table(val)
+
+
+            #HTML table
+            puts %{
+</pre>
+<div style="background-color:#000000">
+   <table width="100%" cellspacing="1" border="0">
+      <tbody>
+         <tr bgcolor="#ffffff">
+            <td align="center">&nbsp;</td>
+            <td align="center">YTD</td>
+            <td bgcolor="#D7D7D7" align="center">JAN</td>
+            <td bgcolor="#D7D7D7" align="center">FEB</td>
+            <td bgcolor="#D7D7D7" align="center">MAR</td>
+            <td bgcolor="#D7D7D7" align="center">APR</td>
+            <td bgcolor="#D7D7D7" align="center">MAY</td>
+            <td bgcolor="#D7D7D7" align="center">JUN</td>
+            <td bgcolor="#D7D7D7" align="center">JUL</td>
+            <td bgcolor="#D7D7D7" align="center">AUG</td>
+            <td bgcolor="#D7D7D7" align="center">SEP</td>
+            <td bgcolor="#D7D7D7" align="center">OCT</td>
+            <td bgcolor="#D7D7D7" align="center">NOV</td>
+            <td bgcolor="#D7D7D7" align="center">DEC</td>
+         </tr>
+         <tr bgcolor="#ffffff">
+            <td style="padding-left:5px;" rowspan="2">
+               <table border="0">
+                  <tbody>
+                     <tr>
+                        <td bgcolor="#336600" height="10px" width="10px">&nbsp;</td>
+                        <td>&nbsp;67846010</td>
+                        <script> if(selectedMipAcct=='67846010') txtColor = "#336600"; </script>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td align="center" rowspan="2">21.44%</td>
+            <td bgcolor="#FFFFCC" align="center">1.85%</td>
+            <td bgcolor="#FFFFCC" align="center">3.90%</td>
+            <td bgcolor="#FFFFCC" align="center">0.08%</td>
+            <td bgcolor="#FFFFCC" align="center">1.00%</td>
+            <td bgcolor="#FFFFCC" align="center">1.39%</td>
+            <td bgcolor="#FFFFCC" align="center">0.61%</td>
+            <td bgcolor="#FFFFCC" align="center">2.03%</td>
+            <td bgcolor="#FFFFCC" align="center">0.29%</td>
+            <td bgcolor="#FFFFCC" align="center">2.05%</td>
+            <td bgcolor="#FFFFCC" align="center">2.30%</td>
+            <td bgcolor="#FFFFCC" align="center">3.04%</td>
+            <td bgcolor="#FFFFCC" align="center">1.10%</td>
+         </tr>
+         <tr bgcolor="#ffffff">
+            <td align="center" colspan="3">Q1 Performance<br>5.91%
+            </td>
+            <td align="center" colspan="3">Q2 Performance<br>3.04%
+            </td>
+            <td align="center" colspan="3">Q3 Performance<br>4.43%
+            </td>
+            <td align="center" colspan="3">Q4 Performance<br>6.57%
+            </td>
+         </tr>
+         <tr bgcolor="#ffffff">
+            <td style="padding-left:5px;" rowspan="2">
+               <table border="0">
+                  <tbody>
+                     <tr>
+                        <td bgcolor="#0033FF" height="10px" width="10px">&nbsp;</td>
+                        <td>&nbsp;
+                           S&amp;P 500 Index
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td align="center" rowspan="2">20.37%</td>
+            <td bgcolor="#FFFFCC" align="center">1.79%</td>
+            <td bgcolor="#FFFFCC" align="center">3.72%</td>
+            <td bgcolor="#FFFFCC" align="center">-0.04%</td>
+            <td bgcolor="#FFFFCC" align="center">0.91%</td>
+            <td bgcolor="#FFFFCC" align="center">1.16%</td>
+            <td bgcolor="#FFFFCC" align="center">0.48%</td>
+            <td bgcolor="#FFFFCC" align="center">2.75%</td>
+            <td bgcolor="#FFFFCC" align="center">0.05%</td>
+            <td bgcolor="#FFFFCC" align="center">1.93%</td>
+            <td bgcolor="#FFFFCC" align="center">2.22%</td>
+            <td bgcolor="#FFFFCC" align="center">2.81%</td>
+            <td bgcolor="#FFFFCC" align="center">0.98%</td>
+         </tr>
+         <tr bgcolor="#ffffff">
+            <td align="center" colspan="3">Q1 Performance<br>5.53%
+            </td>
+            <td align="center" colspan="3">Q2 Performance<br>2.57%
+            </td>
+            <td align="center" colspan="3">Q3 Performance<br>4.79%
+            </td>
+            <td align="center" colspan="3">Q4 Performance<br>6.12%
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+
+<pre>
+}
+
+
+
         else
             puts val.to_s
         end
@@ -692,14 +799,14 @@ class ProgramNode < Treetop::Runtime::SyntaxNode
 
 
         @market = Market.new
-#        @market.add_stock('VFINX',:MUTUAL,0)
-#        @market.add_stock('QQQ',:STOCK,6.95)
-#        @market.add_stock('GE',:STOCK,6.95)
-#        @market.add_stock('MERC',:STOCK,6.95)
-#        @market.add_stock('AMSC',:STOCK,6.95)
-#        @market.add_stock('PG',:STOCK,6.95)
+        @market.add_stock('VFINX',:MUTUAL,0)
+        @market.add_stock('QQQ',:STOCK,6.95)
+        @market.add_stock('GE',:STOCK,6.95)
+        @market.add_stock('MERC',:STOCK,6.95)
+        @market.add_stock('AMSC',:STOCK,6.95)
+        @market.add_stock('PG',:STOCK,6.95)
         @market.add_stock('IBM',:STOCK,6.95)
-#        @market.add_stock('CELG',:STOCK,6.95)
+        @market.add_stock('CELG',:STOCK,6.95)
         @market.add_stock('GOOG',:STOCK,0)
 #        @market.add_all
 
@@ -761,8 +868,8 @@ class Parser
 
   def self.eval(data)
 
-      str = with_captured_stdout { 
-    
+      str = with_captured_stdout {
+
         tree = @@parser.parse(data)
         if(tree.nil?)
             puts "Parse error at offset: #{@@parser.index}\n#{@@parser.failure_reason}"
@@ -770,7 +877,7 @@ class Parser
             tree.eval
         end
     }
-    return str
+    return "<pre>" + str + "</pre>"
 
   end
 
