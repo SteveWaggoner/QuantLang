@@ -13,7 +13,7 @@ end
 
 class IntegerNode < ValueNode
 
-    def eval(program)
+    def evaluate(program)
         return self.text_value.to_i
     end
 
@@ -39,7 +39,7 @@ end
 
 class FloatNode < ValueNode
 
-    def eval(program)
+    def evaluate(program)
         value
     end
 
@@ -212,7 +212,7 @@ end
 
 
 class FilterValueNode < FilterNode
-    def eval(program,array=nil)
+    def evaluate(program,array=nil)
 
         if array == nil
             array = program.market.stocks.map { |symbol,stock| stock }
@@ -290,7 +290,7 @@ end
 
 
 class FilterAttributeNode < FilterNode
-    def eval(program, array=nil)
+    def evaluate(program, array=nil)
 
         aka = { "tech" => "Technology", "biotech" => "Biotechnology" }
         value = ( aka[attrib1] || attrib1 ).downcase
@@ -345,7 +345,7 @@ end
 
 class IdNode < EvalNode
 
-    def eval(program)
+    def evaluate(program)
         if program.variables.has_key? variable_name
             program.variables[variable_name]
         elsif program.market.stocks.has_key? variable_name
@@ -372,7 +372,7 @@ end
 
 class AssignmentNode < CommandNode
 
-    def eval(program)
+    def evaluate(program)
 
         val = expression.evaluate(program)
         self.filter_pipes.each do |pipe|
@@ -398,7 +398,7 @@ end
 
 class PrintNode < CommandNode
 
-    def eval(program)
+    def evaluate(program)
         val = expression.evaluate(program)
         self.filter_pipes.each do |pipe|
             val = pipe.evaluate(program, val)
@@ -540,7 +540,7 @@ class ObjectNode < EvalNode
         end
     end
 
-    def eval(program)
+    def evaluate(program)
         if params
             param_vals = params.evaluate(program)
         else
@@ -565,7 +565,7 @@ class ObjectNode < EvalNode
 end
 
 class ParamsNode < EvalNode
-    def eval(program)
+    def evaluate(program)
         arr = Array.new
         arr << self.elements[0].evaluate(program)
         if not self.elements[1].empty?
@@ -592,7 +592,7 @@ class ParamsNode < EvalNode
 end
 
 class NamedParamNode < EvalNode
-    def eval(program)
+    def evaluate(program)
         [ elements[0], elements[4] ]
     end
 
@@ -607,7 +607,7 @@ end
 
 class ArrayNode < EvalNode
 
-    def eval(program)
+    def evaluate(program)
         arr = []
         arr << self.elements[2].evaluate(program)
         if not self.elements[4].empty?
@@ -795,7 +795,7 @@ end
 class ProgramNode < Treetop::Runtime::SyntaxNode
     attr_reader :variables, :factories, :market
 
-    def eval
+    def evaluate
 
 
         @market = Market.new

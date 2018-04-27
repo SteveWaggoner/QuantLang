@@ -10,7 +10,7 @@ class QuantLangController < ApplicationController
   end
 
   def evaluate_ql_code(code)
-    output = Parser.evaluate(code)
+    output = Parser.evaluate(code).html_safe
     return output
   end
 
