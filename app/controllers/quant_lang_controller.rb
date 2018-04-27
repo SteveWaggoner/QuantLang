@@ -1,4 +1,3 @@
-
 require "./lib/quant_lang/quant_lang"
 
 class QuantLangController < ApplicationController
@@ -7,15 +6,14 @@ class QuantLangController < ApplicationController
   end
 
   def edit
-	render :edit
+    render :edit
   end
 
-
-  def compile(code)
-      output = Parser.eval(code)
-      return output
+  def evaluate_ql_code(code)
+    output = Parser.evaluate(code)
+    return output
   end
-  helper_method :compile
 
+  helper_method :evaluate_ql_code
 
 end

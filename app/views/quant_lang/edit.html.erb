@@ -5,7 +5,7 @@
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
   <textarea name="my_script" cols="100" rows="15">
-      <% if params.key?(:my_script)  %>
+      <% if params.key?(:my_script) %>
         <%= params[:my_script] %>
       <% else %>
 mos = [ Momentum(10), Momentum(5) ]
@@ -28,11 +28,11 @@ print my_strat
 </form>
 
 
-<% if request.post?  %>
+<% if request.post? %>
 
-    <p>
-<%= compile(params[:my_script]) %>
-    </p>
+  <p>
+    <%= evaluate_ql_code(params[:my_script]) %>
+  </p>
 
 
 <% end %>

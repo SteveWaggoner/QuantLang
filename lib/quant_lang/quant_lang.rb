@@ -374,9 +374,9 @@ class AssignmentNode < CommandNode
 
     def eval(program)
 
-        val = expression.eval(program)
+        val = expression.evaluate(program)
         self.filter_pipes.each do |pipe|
-            val = pipe.eval(program,val)
+            val = pipe.evaluate(program, val)
         end
         program.variables[variable.variable_name] = val
     end
@@ -399,9 +399,9 @@ end
 class PrintNode < CommandNode
 
     def eval(program)
-        val = expression.eval(program)
+        val = expression.evaluate(program)
         self.filter_pipes.each do |pipe|
-            val = pipe.eval(program,val)
+            val = pipe.evaluate(program, val)
         end
 
         if val.kind_of? Array and val.size>0 and val[0].kind_of? Security
@@ -435,7 +435,7 @@ class ObjectNode < EvalNode
 
     def eval(program)
         if params
-            param_vals = params.eval(program)
+            param_vals = params.evaluate(program)
         else
             param_vals = []
         end
@@ -460,11 +460,11 @@ end
 class ParamsNode < EvalNode
     def eval(program)
         arr = Array.new
-        arr << self.elements[0].eval(program)
+        arr << self.elements[0].evaluate(program)
         if not self.elements[1].empty?
             more_cnt = self.elements[1].elements.size
             for n in 0...more_cnt
-                arr << self.elements[1].elements[n].elements[3].eval(program)
+                arr << self.elements[1].elements[n].elements[3].evaluate(program)
             end
         end
 
@@ -502,11 +502,11 @@ class ArrayNode < EvalNode
 
     def eval(program)
         arr = []
-        arr << self.elements[2].eval(program)
+        arr << self.elements[2].evaluate(program)
         if not self.elements[4].empty?
             more_cnt = self.elements[4].elements.size
             for n in 0...more_cnt
-                arr << self.elements[4].elements[n].elements[2].eval(program)
+                arr << self.elements[4].elements[n].elements[2].evaluate(program)
             end
         end
 
@@ -711,12 +711,12 @@ class ProgramNode < Treetop::Runtime::SyntaxNode
         @factories["AllIn"] = AllIn_Factory.new
         @factories["Strategy"] = Strategy_Factory.new(@market)
 
-        self.commands.each {|c| c.eval(self)}
+        self.commands.each {|c| c.evaluate(self)}
     end
 
     def recursive_eval(node)
         while node.is_a? Treetop::Runtime::SyntaxNode
-           node = node.eval(self)
+           node = node.evaluate(self)
         end
         return node
     end
@@ -759,7 +759,7 @@ class Parser
     return tree
   end
 
-  def self.eval(data)
+  def self.evaluate(data)
 
       str = with_captured_stdout { 
     
@@ -767,7 +767,7 @@ class Parser
         if(tree.nil?)
             puts "Parse error at offset: #{@@parser.index}\n#{@@parser.failure_reason}"
         else
-            tree.eval
+            tree.evaluate
         end
     }
     return str
@@ -779,7 +779,7 @@ end
 
 if __FILE__ == $0
 
-        output = Parser.eval(ARGV[0])
+        output = Parser.evaluate(ARGV[0])
         puts output
 
 end
