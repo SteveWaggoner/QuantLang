@@ -1,3 +1,3 @@
 # README
 
-http://test.publicscript.com/QuantLang
+~~http://test.publicscript.com/QuantLang~~
